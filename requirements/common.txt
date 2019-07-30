@@ -1,0 +1,4 @@
+pyathena
+boto3
+google-cloud-storage
+pyspark==2.3.3

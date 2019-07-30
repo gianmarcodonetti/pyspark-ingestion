@@ -8,6 +8,8 @@ notebook/
 *.ipynb
 python
 *.csv
+*.full
+.DS_Store
 
 package/
 data/
