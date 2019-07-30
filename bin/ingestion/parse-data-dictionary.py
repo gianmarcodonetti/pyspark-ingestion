@@ -4,7 +4,6 @@ import logging
 import os
 
 import pandas as pd
-
 from loipy import constants as C
 
 TABLE_SCHEMA = 'TABLE_SCHEMA'
@@ -43,7 +42,6 @@ def main(file_path):
             C.REF_COLUMN: incremental_ref,
             C.COLUMNS_TO_IMPORT: columns_to_import,
             C.REF_FIRST_VALUE: "2019-4-30T00:00:00.000Z"
-
         }
 
     logging.info("Settings dictionary created, length: {}".format(len(settings)))

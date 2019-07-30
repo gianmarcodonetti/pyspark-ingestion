@@ -9,7 +9,7 @@ notebook/
 python
 *.csv
 *.full
-.DS_Store
+*.DS_Store
 
 package/
 data/
