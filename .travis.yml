@@ -5,8 +5,9 @@ python:
 
 # command to install dependencies
 install:
-  - pip install -r requirements/common.txt
+  - pip install -r requirements.txt
   - pip install coveralls
+  - pip install codecov
 
 # command to run tests
 script:
@@ -14,4 +15,5 @@ script:
 - coverage run --source graphy setup.py test
 
 after_success:
-    coveralls
+ - coveralls
+ - codecov
