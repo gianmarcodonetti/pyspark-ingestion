@@ -76,7 +76,7 @@ if __name__ == '__main__':
         executor_memory='10g',
         driver_memory='10g',
         master='local[*]',
-        app_name='pyspark-ingestion',
+        app_name='pyspark_ingestion',
         shuffle_partitions='40'
     )
     storage_client = storage.Client.from_service_account_json(os.environ.get(GOOGLE_APPLICATION_CREDENTIALS))

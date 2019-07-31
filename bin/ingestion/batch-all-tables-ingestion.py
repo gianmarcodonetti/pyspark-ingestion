@@ -41,7 +41,7 @@ if __name__ == '__main__':
         executor_memory='8g',
         driver_memory='8g',
         master='local[*]',
-        app_name='pyspark-ingestion',
+        app_name='pyspark_ingestion',
         shuffle_partitions='40'
     )
 

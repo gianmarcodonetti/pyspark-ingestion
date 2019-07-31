@@ -13,7 +13,7 @@ DEFAULT_BASE_PATH = os.path.join(os.sep, 'tmp', 'data', 'l0')
 SETTINGS_ENCRYPTED = 'settings.json.pydes'
 
 
-def set_logger(project_name='pyspark-ingestion'):
+def set_logger(project_name='pyspark_ingestion'):
     pwd = os.getcwd()
     log_dir = os.path.join(pwd.split(project_name)[0],
                            project_name,
@@ -42,7 +42,7 @@ def create_parser():
 
 
 if __name__ == '__main__':
-    set_logger('pyspark-ingestion')
+    set_logger('pyspark_ingestion')
     logging.info(__file__)
     parser = create_parser()
     args = parser.parse_args()
@@ -65,7 +65,7 @@ if __name__ == '__main__':
         executor_memory='8g',
         driver_memory='8g',
         master='local[*]',
-        app_name='pyspark-ingestion',
+        app_name='pyspark_ingestion',
         shuffle_partitions='40'
     )
 

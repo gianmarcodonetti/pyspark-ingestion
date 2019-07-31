@@ -9,8 +9,9 @@ try:  # for pip >= 10
     from pip._internal.req import parse_requirements
 except ImportError:  # for pip <= 9.0.3
     from pip.req import parse_requirements
+PACKAGE_NAME = os.getcwd().split(os.sep)[-1].replace('-', '_')
 
-with open(os.path.join(os.path.dirname(__file__), 'pyspark-ingestion', 'version.py')) as v_file:
+with open(os.path.join(os.path.dirname(__file__), PACKAGE_NAME, 'version.py')) as v_file:
     VERSION = re.compile(r".*__version__ = '(.*?)'", re.S).match(v_file.read()).group(1)
 
 
@@ -31,9 +32,9 @@ class OverrideInstall(install):
 
 
 config = {
-    'name': 'pyspark-ingestion',
-    'description': 'Python package for LOI',
-    'author': 'G. Donetti, J. Radaelli',
+    'name': PACKAGE_NAME,
+    'description': 'Python package for Spark Ingestion',
+    'author': 'G. Donetti',
     'url': '',
     'download_url': '',
     'author_email': '',
