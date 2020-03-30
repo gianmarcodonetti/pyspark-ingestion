@@ -5,9 +5,9 @@ import sys
 from datetime import datetime
 from getpass import getpass
 
-from loipy import spark as sparkaras
-from loipy.ingestion.ingestion import ingestion_step
-from loipy.utils.security import decrypt_json
+from pyspark_ingestion import spark as sparkaras
+from pyspark_ingestion.ingestion.ingestion import ingestion_step
+from pyspark_ingestion.utils.security import decrypt_json
 
 DEFAULT_BASE_PATH = os.path.join(os.sep, 'tmp', 'data', 'l0')
 SETTINGS_ENCRYPTED = 'settings.json.pydes'

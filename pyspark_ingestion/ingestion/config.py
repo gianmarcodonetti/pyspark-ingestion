@@ -1,10 +1,11 @@
+import hashlib
 from datetime import datetime
 
 from pyspark.sql import functions as F
 from pyspark.sql import types as T
 
-from loipy import constants as C
-from loipy.spark import get_jdbc_thin_url, get_jdbc_sqlserver_url
+from pyspark_ingestion import constants as C
+from pyspark_ingestion.spark import get_jdbc_thin_url, get_jdbc_sqlserver_url
 
 DATETIME_FROM = datetime(1980, 1, 1)
 DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
@@ -64,7 +65,26 @@ def preparation_c1_df(df, table_settings, sync):
     else:
         df_sel = df
 
-    elab_df = (df_sel
+    def encrypt_value(value_to_refactor):
+        try:
+            sha_value = hashlib.sha256(value_to_refactor.encode()).hexdigest()
+        except AttributeError as e:
+            sha_value = None
+        return sha_value
+
+    encrypt_udf = F.udf(encrypt_value, T.StringType())
+    if 'EMAIL__C' in df_sel.columns:
+        first_step_df = df_sel.withColumn('EMAIL__C', encrypt_udf('EMAIL__C'))
+    else:
+        first_step_df = df_sel
+
+    to_int_udf = F.udf(lambda x: str(x), T.StringType())
+    if 'IS_PRO__C' in first_step_df.columns:
+        second_step_df = first_step_df.withColumn('IS_PRO__C', to_int_udf('IS_PRO__C'))
+    else:
+        second_step_df = first_step_df
+
+    elab_df = (second_step_df
                .where(F.col(ref_column) > ref_last_value)
                .withColumn('YEAR', F.udf(lambda x: x.year, T.StringType())(F.col(ref_column)))
                .withColumn('WEEK', F.udf(lambda x: x.isocalendar()[1], T.StringType())(F.col(ref_column)))

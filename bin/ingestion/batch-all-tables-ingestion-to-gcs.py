@@ -9,9 +9,10 @@ from distutils.dir_util import copy_tree
 from getpass import getpass
 
 from google.cloud import storage
-from loipy import constants as C, spark as sparkaras
-from loipy.ingestion.ingestion import ingestion_step, copy_local_directory_to_gcs
-from loipy.utils.security import decrypt_json
+
+from pyspark_ingestion import constants as C, spark as sparkaras
+from pyspark_ingestion.ingestion.ingestion import ingestion_step, copy_local_directory_to_gcs
+from pyspark_ingestion.utils.security import decrypt_json
 
 DEFAULT_BASE_PATH = os.path.join(os.sep, 'tmp', 'data', 'l0')
 
@@ -76,7 +77,7 @@ if __name__ == '__main__':
         executor_memory='10g',
         driver_memory='10g',
         master='local[*]',
-        app_name='pyspark_ingestion',
+        app_name='pyspark-ingestion',
         shuffle_partitions='40'
     )
     storage_client = storage.Client.from_service_account_json(os.environ.get(GOOGLE_APPLICATION_CREDENTIALS))

@@ -3,9 +3,9 @@ import logging
 import os
 from getpass import getpass
 
-from loipy import constants as C, spark as sparkaras
-from loipy.ingestion.ingestion import ingestion_step
-from loipy.utils.security import decrypt_json
+from pyspark_ingestion import constants as C, spark as sparkaras
+from pyspark_ingestion.ingestion.ingestion import ingestion_step
+from pyspark_ingestion.utils.security import decrypt_json
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 

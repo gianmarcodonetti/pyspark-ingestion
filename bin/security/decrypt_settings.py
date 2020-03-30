@@ -1,7 +1,7 @@
 import argparse
 import getpass
 
-from loipy.utils import security
+from pyspark_ingestion.utils import security
 
 
 def main(filename, password):

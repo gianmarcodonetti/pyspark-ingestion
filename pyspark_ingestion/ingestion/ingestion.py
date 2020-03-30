@@ -7,8 +7,8 @@ from datetime import datetime
 from google.cloud.storage.bucket import Bucket
 from pyspark.sql import functions as F
 
-from loipy import constants as C, spark as sparkaras
-from loipy.ingestion import config
+from pyspark_ingestion import constants as C, spark as sparkaras
+from pyspark_ingestion.ingestion import config
 
 DEFAULT_FETCHSIZE = "10000"
 
